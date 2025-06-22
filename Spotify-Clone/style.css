@@ -42,7 +42,7 @@ body{
   width: 20px;
 }
 .library{
-  min-height: 80px;
+  min-height: 80vh;
   position: relative;
 }
 .footer{
@@ -55,4 +55,13 @@ body{
 }
 .footer a{
   color: gray;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.header > *{
+padding: 20px;
 }
