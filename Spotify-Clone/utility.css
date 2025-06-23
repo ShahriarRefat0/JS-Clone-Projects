@@ -32,3 +32,23 @@ filter: invert(1);
 .p-1{
   padding: 10px;
 }
+
+/* Transparent scrollbar for WebKit browsers (Chrome, Edge, etc.) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Light thumb, 20% opacity */
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  /* Slightly more visible on hover */
+}
