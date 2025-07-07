@@ -19,17 +19,18 @@ html, body{
   width: 100%;
   background-color: #fff;
 }
-.cursor{
+.cursor {
   width: 20px;
-    height: 20px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 50%;
-    mix-blend-mode: difference;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+  height: 20px;
+  background-color: white;
+  /* Default white */
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
 }
 
 #home{
@@ -58,35 +59,37 @@ html, body{
   font-size: 1.2vw;
   letter-spacing: 1px;
 }
+
 .menu-btn {
   position: relative;
+  width: 50px;
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   z-index: 10;
-  transition: color 0.3s ease;
 }
 
-.menu-btn svg path {
-  stroke: black;
-  transition: stroke 0.3s ease;
-}
-.menu-btn svg {
-  mix-blend-mode: difference;
+.menu-btn i {
+  font-size: 24px;
+  color: black;
+  z-index: 2;
+  transition: color 0.3s ease;
+  cursor: pointer;
 }
 
 .magnet-bg {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   background-color: black;
   border-radius: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-  pointer-events: none;
-  z-index: -1;
-  /* behind the button */
-  transition: opacity 0.3s ease;
-
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 #home #homemain{

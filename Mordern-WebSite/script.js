@@ -1,5 +1,9 @@
-// CURSOR FOLLOW
 const cursor = document.querySelector(".cursor");
+const menuBtn = document.querySelector(".menu-btn");
+const magnetBg = document.querySelector(".magnet-bg");
+const menuIcon = document.querySelector(".menu-btn i");
+
+// Cursor Movement
 window.addEventListener("mousemove", (e) => {
   gsap.to(cursor, {
     x: e.clientX,
@@ -9,67 +13,54 @@ window.addEventListener("mousemove", (e) => {
   });
 });
 
-// MENU MAGNET EFFECT
-const menuBtn = document.querySelector(".menu-btn");
-const magnetBg = menuBtn.querySelector(".magnet-bg");
-const svgPaths = menuBtn.querySelectorAll("svg path");
-
-window.addEventListener("mousemove", (e) => {
-  const btnRect = menuBtn.getBoundingClientRect();
-  const x = e.clientX - btnRect.left - btnRect.width / 2;
-  const y = e.clientY - btnRect.top - btnRect.height / 2;
-  const distance = Math.sqrt(x * x + y * y);
-
-  const threshold = 80;
-
-  if (distance < threshold) {
-    // Magnet pull
-    gsap.to(menuBtn, {
-      x: x * 0.3,
-      y: y * 0.3,
-      duration: 0.3,
-      ease: "power3.out",
-    });
-
-    // Show black background
-    magnetBg.style.opacity = 1;
-
-    // Make icon white
-    svgPaths.forEach((p) => p.setAttribute("stroke", "#ffffff"));
-  } else {
-    // Reset position
-    gsap.to(menuBtn, {
-      x: 0,
-      y: 0,
-      duration: 0.3,
-      ease: "power3.out",
-    });
-
-    // Hide background
-    magnetBg.style.opacity = 0;
-
-    // Make icon black again
-    svgPaths.forEach((p) => p.setAttribute("stroke", "#141B34"));
-  }
+// Change cursor color to black when hovering menu
+menuBtn.addEventListener("mouseenter", () => {
+  cursor.style.backgroundColor = "black"; // 🟤 Black cursor
 });
 
-// Shery.mouseFollower();
-// Shery.makeMagnet(".magnet");
-// Shery.hoverWithMedicaCircle(".hvr", {
-//   videos: ["./0.mp4", "./2.mp4", "./3.mp4"],
+menuBtn.addEventListener("mouseleave", () => {
+  cursor.style.backgroundColor = "white"; // ⚪ Back to white
+});
+// Hover In
+menuBtn.addEventListener("mouseenter", () => {
+  gsap.to(magnetBg, {
+    scale: 1,
+    opacity: 1,
+    duration: 0.1,
+    ease: "power2.out",
+  });
+  menuIcon.style.color = "#fff"; // menu icon white
+});
 
-// });
+// Mouse Move Inside Button
+menuBtn.addEventListener("mousemove", (e) => {
+  const rect = menuBtn.getBoundingClientRect();
+  const relX = e.clientX - rect.left;
+  const relY = e.clientY - rect.top;
 
-// gsap.registerPlugin(ScrollTrigger);
+  gsap.to(magnetBg, {
+    x: relX - rect.width / 2,
+    y: relY - rect.height / 2,
+    duration: 0.1,
+    ease: "power3.out",
+  });
 
-// gsap.to(".fleftelm", {
-//   scrollTrigger: {
-//     trigger: "#fimages",
-//     pin: true,
-//     start: "top top",
-//     end: "bottom bottom",
-//     scrub: 1,
-//   },
-//   y: "-300%",
-//   ease: "power1.out",
-// });
+  // Move menu icon (with slight delay and scale feel)
+  gsap.to(menuIcon, {
+    x: (relX - rect.width / 2) * 0.2,
+    y: (relY - rect.height / 2) * 0.2,
+    duration: 0.1,
+    ease: "power3.out",
+  });
+});
+
+// Hover Out
+menuBtn.addEventListener("mouseleave", () => {
+  gsap.to(magnetBg, {
+    scale: 0,
+    opacity: 0,
+    duration: 0.1,
+    ease: "power2.out",
+  });
+  menuIcon.style.color = "#000"; // menu icon back to black
+});
